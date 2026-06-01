@@ -21,6 +21,7 @@ public class ScreenshotUtil {
     WebDriver driver,
     String screenshotName) {
 
+    	
         String timeStamp =
         new SimpleDateFormat(
         "yyyyMMdd_HHmmss")

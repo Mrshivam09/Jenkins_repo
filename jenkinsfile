@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'master',
-                    url:'https://github.com/Mrshivam09/Jenkins_repo'
+                    url:'https://github.com/Mrshivam09/TutorialsNinja_Jenkins.git'
             }
         }
  

@@ -13,23 +13,22 @@ import io.cucumber.java.en.*;
 
 public class TutorialsNinjaSteps {
 
-    LoginPage lp =
-    new LoginPage(BaseClass.driver);
+    public static String generatedEmail;
 
-    RegisterPage rp =
-    new RegisterPage(BaseClass.driver);
-
-    SearchPage sp =
-    new SearchPage(BaseClass.driver);
-
-    LogoutPage lop =
-    new LogoutPage(BaseClass.driver);
+    LoginPage lp = new LoginPage(BaseClass.driver);
+    RegisterPage rp = new RegisterPage(BaseClass.driver);
+    SearchPage sp = new SearchPage(BaseClass.driver);
+    LogoutPage lop = new LogoutPage(BaseClass.driver);
 
     @Given("user opens Tutorials Ninja website")
     public void user_opens_tutorials_ninja_website() {
 
         System.out.println("Website Opened");
     }
+
+    // =========================
+    // LOGIN
+    // =========================
 
     @When("user clicks on My Account")
     public void user_clicks_on_my_account() {
@@ -46,7 +45,18 @@ public class TutorialsNinjaSteps {
     @When("user enters email {string}")
     public void user_enters_email(String email) {
 
-        lp.enterEmail(email);
+        if (generatedEmail != null && !generatedEmail.isEmpty()) {
+
+            lp.enterEmail(generatedEmail);
+
+            System.out.println("Login Email = " + generatedEmail);
+
+        } else {
+
+            lp.enterEmail(email);
+
+            System.out.println("Login Email = " + email);
+        }
     }
 
     @When("user enters password {string}")
@@ -64,12 +74,18 @@ public class TutorialsNinjaSteps {
     @Then("user should login successfully")
     public void user_should_login_successfully() {
 
-        String title =
-        BaseClass.driver.getTitle();
+        String title = BaseClass.driver.getTitle();
+
+        System.out.println("Login Title = " + title);
 
         Assert.assertTrue(
-        title.contains("My Account"));
+                "Login Failed. Current Title = " + title,
+                title.contains("My Account"));
     }
+
+    // =========================
+    // REGISTRATION
+    // =========================
 
     @When("user clicks on Register option")
     public void user_clicks_on_register_option() {
@@ -78,43 +94,44 @@ public class TutorialsNinjaSteps {
     }
 
     @When("user enters first name {string}")
-    public void user_enters_first_name(
-    String fname) {
+    public void user_enters_first_name(String fname) {
 
         rp.enterFirstName(fname);
     }
 
     @When("user enters last name {string}")
-    public void user_enters_last_name(
-    String lname) {
+    public void user_enters_last_name(String lname) {
 
         rp.enterLastName(lname);
     }
 
     @When("user enters register email {string}")
-    public void user_enters_register_email(
-    String email) {
+    public void user_enters_register_email(String email) {
 
-        rp.enterEmail(email);
+        generatedEmail =
+                "shivam"
+                + System.currentTimeMillis()
+                + "@gmail.com";
+
+        rp.enterEmail(generatedEmail);
+
+        System.out.println("Generated Email = " + generatedEmail);
     }
 
     @When("user enters telephone {string}")
-    public void user_enters_telephone(
-    String phone) {
+    public void user_enters_telephone(String phone) {
 
         rp.enterPhone(phone);
     }
 
     @When("user enters register password {string}")
-    public void user_enters_register_password(
-    String pass) {
+    public void user_enters_register_password(String pass) {
 
         rp.enterPassword(pass);
     }
 
     @When("user confirms password {string}")
-    public void user_confirms_password(
-    String pass) {
+    public void user_confirms_password(String pass) {
 
         rp.enterConfirmPassword(pass);
     }
@@ -134,13 +151,31 @@ public class TutorialsNinjaSteps {
     @Then("account should create successfully")
     public void account_should_create_successfully() {
 
-        System.out.println(
-        "Registration Successful");
+        String pageSource =
+                BaseClass.driver.getPageSource();
+
+        Assert.assertTrue(
+                "Registration Failed",
+                pageSource.contains(
+                "Your Account Has Been Created"));
     }
 
+    // =========================
+    // LOGOUT
+    // =========================
+
+    @When("user clicks on Logout option")
+    public void user_clicks_on_logout_option() {
+
+        lop.clickLogout();
+    }
+
+    // =========================
+    // SEARCH
+    // =========================
+
     @When("user searches product {string}")
-    public void user_searches_product(
-    String product) {
+    public void user_searches_product(String product) {
 
         sp.searchProduct(product);
     }
@@ -154,7 +189,12 @@ public class TutorialsNinjaSteps {
     @Then("searched product should display")
     public void searched_product_should_display() {
 
-        System.out.println(
-        "Product Displayed");
+        String pageSource =
+                BaseClass.driver.getPageSource();
+
+        Assert.assertFalse(
+                "No Search Results Found",
+                pageSource.contains(
+                "There is no product that matches"));
     }
 }

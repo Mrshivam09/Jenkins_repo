@@ -7,18 +7,14 @@ import io.cucumber.java.Before;
 public class Hooks {
 
     @Before
-    public void beforeScenario() {
+    public void setup() {
 
         BaseClass.setupBrowser();
-
-        System.out.println("Browser Launched");
     }
 
     @After
-    public void afterScenario() {
+    public void tearDown() {
 
         BaseClass.closeBrowser();
-
-        System.out.println("Browser Closed");
     }
 }

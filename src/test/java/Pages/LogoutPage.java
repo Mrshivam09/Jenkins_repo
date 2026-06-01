@@ -9,31 +9,12 @@ public class LogoutPage {
     WebDriver driver;
 
     public LogoutPage(WebDriver driver) {
-
         this.driver = driver;
     }
 
-    // -----------------------------------------
-    // LOCATORS
-    // -----------------------------------------
-
-    By myAccount =
-    By.xpath("//span[text()='My Account']");
-
-    By logout =
-    By.linkText("Logout");
-
-    // -----------------------------------------
-    // METHODS
-    // -----------------------------------------
-
-    public void clickMyAccount() {
-
-        driver.findElement(myAccount).click();
-    }
+    By logout = By.linkText("Logout");
 
     public void clickLogout() {
-
         driver.findElement(logout).click();
     }
 }

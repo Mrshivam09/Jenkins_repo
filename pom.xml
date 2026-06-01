@@ -13,6 +13,9 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <dependencies>
 
     <!-- Selenium -->
+    
+   
+   
 
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
