@@ -12,6 +12,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 public class ScreenshotUtil {
+	
 
     // ------------------------------------------------
     // CAPTURE SCREENSHOT METHOD

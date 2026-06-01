@@ -7,6 +7,7 @@ public class RegisterPage {
 
     WebDriver driver;
     
+    
 
     public RegisterPage(WebDriver driver) {
 

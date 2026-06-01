@@ -7,6 +7,7 @@ import Pages.RegisterPage;
 import Pages.SearchPage;
 import Pages.LogoutPage;
 
+
 import Utilities.BaseClass;
 
 import io.cucumber.java.en.*;

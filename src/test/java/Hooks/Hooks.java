@@ -11,6 +11,7 @@ public class Hooks {
 
         BaseClass.setupBrowser();
     }
+    
 
     @After
     public void tearDown() {

@@ -1,6 +1,7 @@
 @Smoke
 Feature: Verify Tutorials Ninja Functionality
 
+
 Background:
 Given user opens Tutorials Ninja website
 
